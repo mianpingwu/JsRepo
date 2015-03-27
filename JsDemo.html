@@ -1,0 +1,41 @@
+<html>
+<head>
+<script language="javascript">
+function countWordPercent() {
+
+	var sentences = "I am so glad to see you, this is jus a test for javascript, i will try it again and again!";
+	var words = sentences.split(" ");
+	var wordCount = words.length;
+	var wordLengths = new Array([wordCount]);
+	var maxLength = 0;
+	
+	for(var i = 0; i < wordCount; i++) {
+		
+		words[i] = words[i].replace(/[\,|\.|\?|\!|\:|\;|\/|\<|\>]/g,"");
+		var wordLength = words[i].length;
+		wordLengths[i] = wordLength;
+		if (wordLength > maxLength) maxLength = wordLength;
+	}
+	
+	console.log("Total words: " + wordCount);
+	for (var i = 1; i <= maxLength; i++) {
+		
+		var numPresentCount = 0;
+		for (var j = 0; j < wordLengths.length; j++) {
+			if (i == wordLengths[j]) numPresentCount++;
+		}
+		
+		if (numPresentCount > 0) {
+		  
+			var rate = (100*numPresentCount)/wordCount;
+			var formatRate = rate.toFixed(2);
+			console.log("These words with " + i + " characters take a percentage of %" + formatRate);
+		}
+	}	
+}
+//window.onload = countWordPercent();
+</script>
+</head>
+<body onload="countWordPercent()">
+</body>
+</html>
